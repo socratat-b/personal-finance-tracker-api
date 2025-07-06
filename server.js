@@ -2,6 +2,7 @@ import cors from "cors";
 import express from "express";
 import helmet from "helmet";
 import { requestLogger } from "./middleware/logger.js";
+import loremRouter from "./routes/index.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -13,6 +14,9 @@ app.use(express.json()); //parse JSON bodies
 
 // Middleware
 app.use(requestLogger);
+
+// Router
+app.use("/lorems", loremRouter);
 
 // API Documentation endpoint
 app.get("/", (req, res) => {

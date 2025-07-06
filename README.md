@@ -13,7 +13,7 @@ A simple REST API for managing personal expenses built with Express.js. Track yo
 
 ```bash
 # Clone the repository
-git clone https://github.com/[your-username]/personal-finance-tracker-api
+git clone https://github.com/socratat-b/personal-finance-tracker-api.git
 cd personal-finance-tracker-api
 
 # Install dependencies
