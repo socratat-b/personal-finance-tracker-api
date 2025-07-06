@@ -1,6 +1,7 @@
 import cors from "cors";
 import express from "express";
 import helmet from "helmet";
+import { requestLogger } from "./middleware/logger.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -9,6 +10,9 @@ const PORT = process.env.PORT || 3000;
 app.use(helmet()); //For security headers
 app.use(cors()); //For Cross-origin requests
 app.use(express.json()); //parse JSON bodies
+
+// Middleware
+app.use(requestLogger);
 
 // API Documentation endpoint
 app.get("/", (req, res) => {
