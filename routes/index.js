@@ -2,7 +2,7 @@ import { Router } from "express";
 
 const router = Router();
 
-router.get("/", (req, res) => {
+router.get("/expenses", (req, res) => {
   res.send("This is the route of all lorems ");
 });
 

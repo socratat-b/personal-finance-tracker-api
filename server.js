@@ -16,7 +16,7 @@ app.use(express.json()); //parse JSON bodies
 app.use(requestLogger);
 
 // Router
-app.use("/lorems", loremRouter);
+app.use("/api", loremRouter);
 
 // API Documentation endpoint
 app.get("/", (req, res) => {
