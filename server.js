@@ -1,6 +1,7 @@
 import cors from "cors";
 import express from "express";
 import helmet from "helmet";
+import { errorHandler } from "./middleware/errorHandler.js";
 import { requestLogger } from "./middleware/logger.js";
 import loremRouter from "./routes/index.js";
 
@@ -49,6 +50,17 @@ app.get("/", (req, res) => {
     },
   });
 });
+
+// 404 handler for unknown routes
+app.use("*", (req, res) => {
+  res.status(404).json({
+    error: "Route not found",
+    message: `No route found for ${req.method} ${req.originalUrl}`,
+  });
+});
+
+// Global error handler
+app.use(errorHandler);
 
 // Start server
 app.listen(PORT, () => {
