@@ -25,6 +25,11 @@ router.post("/", validateExpense, (req, res) => {
 
 // Update a expenses through id
 router.put("/:id", validateId, expenseExist, (req, res) => {
+  const updates = req.body;
+
+  // Update the fields directly
+  Object.assign(req.expense, updates); // updates will insert/overwrite in the exisiting object req.expenses = {}
+
   return res.status(200).send(`Edit success for Id": ${req.expenseId}`);
 });
 

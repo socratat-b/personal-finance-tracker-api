@@ -12,6 +12,8 @@ const expenseExist = (req, res, next) => {
       .status(404)
       .json({ error: `Expense with ID ${parsedId} not found.` });
   }
+  req.expenseId = parsedId;
+  req.expense = found;
 
   next();
 };

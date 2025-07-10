@@ -10,8 +10,6 @@ const validateId = (req, res, next) => {
     return res.status(400).send("Invalid ID. Must be a positive number.");
   }
 
-  req.expenseId = parsedId;
-
   next();
 };
 
