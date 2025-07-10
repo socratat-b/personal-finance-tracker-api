@@ -3,7 +3,7 @@ import express from "express";
 import helmet from "helmet";
 import { errorHandler } from "./middleware/errorHandler.js";
 import { requestLogger } from "./middleware/logger.js";
-import loremRouter from "./routes/index.js";
+import apiRoute from "./routes/index.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -17,7 +17,7 @@ app.use(express.json()); //parse JSON bodies
 app.use(requestLogger);
 
 // Router
-app.use("/api", loremRouter);
+app.use("/api", apiRoute);
 
 // API Documentation endpoint
 app.get("/", (req, res) => {
