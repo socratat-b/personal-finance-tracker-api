@@ -1,13 +1,13 @@
 import { Router } from "express";
 
-const route = Router();
+const router = Router();
 
-route.get("/", (req, res) => {
+router.get("/", (req, res) => {
   return res.send("Get all the expenses operations here later");
 });
 
-route.post("/", (req, res) => {
-  return res.status(201).send("Create something new in this route");
+router.post("/", (req, res) => {
+  return res.status(201).send("Create something new in this router");
 });
 
-export default route;
+export default router;
