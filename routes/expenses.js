@@ -1,4 +1,5 @@
 import { Router } from "express";
+import expenseExist from "../middleware/expenses-middleware/expenseExist.js";
 import validateExpense from "../middleware/expenses-middleware/validateExpense.js";
 import validateId from "../middleware/validateId.js";
 import { dataStorage } from "../utils/constants.js";
@@ -9,21 +10,21 @@ router.get("/", (req, res) => {
 });
 
 // Getting a specific expense base on id
-router.get("/:id", (req, res) => {
+router.get("/:id", validateId, expenseExist, (req, res) => {
   return res
     .status(200)
-    .send("Grab all the data of this id in the expenes memory or db.");
+    .json(dataStorage.find((expense) => expense.id === req.expenseId));
 });
 
 // Create a expense
 router.post("/", validateExpense, (req, res) => {
   const id = dataStorage.length + 1;
   dataStorage.push({ id, ...req.body });
-  return res.status(201).send("Create something new in this router");
+  return res.status(201).send("Expense successfully created.");
 });
 
 // Update a expenses through id
-router.put("/:id", validateId, (req, res) => {
+router.put("/:id", validateId, expenseExist, (req, res) => {
   return res.status(200).send(`Edit success for Id": ${req.expenseId}`);
 });
 
