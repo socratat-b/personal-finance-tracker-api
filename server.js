@@ -1,6 +1,8 @@
 import cors from "cors";
 import express from "express";
 import helmet from "helmet";
+import path from "path";
+import { fileURLToPath } from "url";
 import { errorHandler } from "./middleware/errorHandler.js";
 import { requestLogger } from "./middleware/logger.js";
 import apiRoute from "./routes/index.js";
@@ -8,10 +10,16 @@ import apiRoute from "./routes/index.js";
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 // Standard middleware stack
 app.use(helmet()); //For security headers
 app.use(cors()); //For Cross-origin requests
 app.use(express.json()); //parse JSON bodies
+
+// Serve static frontend files from /frontend
+app.use(express.static(path.join(__dirname, "frontend")));
 
 // Middleware
 app.use(requestLogger);
