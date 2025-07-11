@@ -1,13 +1,13 @@
 # 💰 Personal Finance Tracker API
 
-A simple REST API for managing personal expenses built with Express.js. Track your spending with full CRUD operations, validation, and error handling.
+A REST API for managing personal expenses built with Express.js and PostgreSQL. Track your spending with full CRUD operations, validation, and error handling.
 
 ## 🔧 Tech Stack
 
 - **Node.js** - JavaScript runtime
 - **Express.js** - Web framework
-- **JavaScript** - Programming language
-- **In-Memory Storage** - Data persistence for MVP
+- **PostgreSQL** - Database
+- **Docker** - Containerization
 
 ## 🚀 Quick Start
 
@@ -16,10 +16,18 @@ A simple REST API for managing personal expenses built with Express.js. Track yo
 git clone https://github.com/socratat-b/personal-finance-tracker-api.git
 cd personal-finance-tracker-api
 
+# Copy environment variables
+cp .env.example .env
+
+# Update .env with your database credentials
+
 # Install dependencies
 npm install
 
-# Start development server
+# Start with Docker (recommended)
+docker-compose up -d
+
+# Or start development server
 npm run dev
 
 # API runs on http://localhost:3000

@@ -86,3 +86,18 @@ temp/
 # Package lock files (uncomment the one you DON'T want to track)
 # package-lock.json
 # yarn.lock
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+data/
+database/
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+
+# Backup files
+*.backup
+*.bak
