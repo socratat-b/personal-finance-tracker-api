@@ -37,10 +37,20 @@ router.get("/:id", validateId, expenseExist, (req, res) => {
 });
 
 // Create a expense
-router.post("/", validateExpense, (req, res) => {
-  const id = dataStorage.length + 1;
-  dataStorage.push({ id, ...req.body });
-  return res.status(201).send("Expense successfully created.");
+router.post("/", validateExpense, async (req, res) => {
+  const { amount, description, category_id, expense_date } = req.body;
+
+  try {
+    await query(
+      `
+      INSERT INTO expenses (amount, description, category_id, expense_date)
+       VALUES ($1, $2, $3, $4)`,
+      [amount, description, category_id, expense_date]
+    );
+    res.status(201).send("Successfully created new expense.");
+  } catch (error) {
+    res.status(500).json({ error: "Database Error" });
+  }
 });
 
 // Update a expenses through id
